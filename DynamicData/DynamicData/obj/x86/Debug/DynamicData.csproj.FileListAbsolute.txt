@@ -1,0 +1,45 @@
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\bin\Debug\DynamicData.exe
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\bin\Debug\DynamicData.pdb
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\bin\Debug\ZedGraph.dll
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\bin\Debug\ZedGraph.xml
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\bin\Debug\de\ZedGraph.resources.dll
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\bin\Debug\es\ZedGraph.resources.dll
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\bin\Debug\fr\ZedGraph.resources.dll
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\bin\Debug\hu\ZedGraph.resources.dll
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\bin\Debug\it\ZedGraph.resources.dll
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\bin\Debug\ja\ZedGraph.resources.dll
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\bin\Debug\pt\ZedGraph.resources.dll
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\bin\Debug\ru\ZedGraph.resources.dll
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\bin\Debug\sk\ZedGraph.resources.dll
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\bin\Debug\sv\ZedGraph.resources.dll
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\bin\Debug\tr\ZedGraph.resources.dll
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\obj\x86\Debug\DynamicData.Form1.resources
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\obj\x86\Debug\DynamicData.Properties.Resources.resources
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\obj\x86\Debug\DynamicData.csproj.GenerateResource.Cache
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\obj\x86\Debug\DynamicData.exe
+C:\Users\tronic's\AppData\Local\Temporary Projects\DynamicData\obj\x86\Debug\DynamicData.pdb
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\obj\x86\Debug\DynamicData.exe
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\obj\x86\Debug\DynamicData.pdb
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\bin\Debug\DynamicData.exe
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\bin\Debug\DynamicData.pdb
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\bin\Debug\ZedGraph.dll
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\bin\Debug\ZedGraph.xml
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\bin\Debug\de\ZedGraph.resources.dll
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\bin\Debug\es\ZedGraph.resources.dll
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\bin\Debug\fr\ZedGraph.resources.dll
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\bin\Debug\hu\ZedGraph.resources.dll
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\bin\Debug\it\ZedGraph.resources.dll
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\bin\Debug\ja\ZedGraph.resources.dll
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\bin\Debug\pt\ZedGraph.resources.dll
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\bin\Debug\ru\ZedGraph.resources.dll
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\bin\Debug\sk\ZedGraph.resources.dll
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\bin\Debug\sv\ZedGraph.resources.dll
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\bin\Debug\tr\ZedGraph.resources.dll
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\bin\Debug\zh-cn\ZedGraph.resources.dll
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\bin\Debug\zh-tw\ZedGraph.resources.dll
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\obj\x86\Debug\DynamicData.Form1.resources
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\obj\x86\Debug\DynamicData.Properties.Resources.resources
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\obj\x86\Debug\DynamicData.csproj.GenerateResource.Cache
+C:\Users\tronic's\Pictures\projectcsharp\DynamicData\DynamicData\obj\x86\Debug\DynamicData.csprojResolveAssemblyReference.cache
