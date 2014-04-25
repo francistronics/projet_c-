@@ -22,6 +22,8 @@ namespace DynamicData
         UdpClient receivemessage = new UdpClient(13000);
         byte[] datatosend = new byte[1024];
         double val;
+        double time;
+        
         
         ////////////////
         // Starting time in milliseconds
@@ -70,7 +72,7 @@ namespace DynamicData
             // Just manually control the X axis range so it scrolls continuously
             // instead of discrete step-sized jumps
             myPane.XAxis.Scale.Min = 0;
-            myPane.XAxis.Scale.Max = 60;
+            myPane.XAxis.Scale.Max = 30;
             myPane.XAxis.Scale.MinorStep = 1;
             myPane.XAxis.Scale.MajorStep = 5;
 
@@ -83,7 +85,8 @@ namespace DynamicData
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-
+            do
+            {
             /////rajouts////////////////////////
             try
             {
@@ -99,49 +102,52 @@ namespace DynamicData
             }
             ////////////////////////////////////
 
+           
+                // Make sure that the curvelist has at least one curve
+                if (zedGraphControl1.GraphPane.CurveList.Count <= 0)
+                    return;
 
-            // Make sure that the curvelist has at least one curve
-            if (zedGraphControl1.GraphPane.CurveList.Count <= 0)
-                return;
+                // Get the first CurveItem in the graph
+                LineItem curve = zedGraphControl1.GraphPane.CurveList[0] as LineItem;
 
-            // Get the first CurveItem in the graph
-            LineItem curve = zedGraphControl1.GraphPane.CurveList[0] as LineItem;
-            if (curve == null)
-                return;
+                if (curve == null)
+                    return;
 
-            // Get the PointPairList
-            IPointListEdit list = curve.Points as IPointListEdit;
-            // If this is null, it means the reference at curve.Points does not
-            // support IPointListEdit, so we won't be able to modify it
-            if (list == null)
-                return;
+                // Get the PointPairList
+                IPointListEdit list = curve.Points as IPointListEdit;
+                // If this is null, it means the reference at curve.Points does not
+                // support IPointListEdit, so we won't be able to modify it
+                if (list == null)
+                    return;
 
-            // Time is measured in seconds
-            double time = (Environment.TickCount - tickStart) / 1000.0;
+                // Time is measured in seconds
+                time = (Environment.TickCount - tickStart) / 1000.0;
 
-            // 3 seconds per cycle
-            // list.Add(time, Math.Sin(2.0 * Math.PI * time / 3.0));
-
-
-            /////////rajout/////////////////////////////
-            list.Add(time, val);
-            ////////////////////////////////////////////
+                // 3 seconds per cycle
+                // list.Add(time, Math.Sin(2.0 * Math.PI * time / 3.0));
 
 
+                /////////rajout/////////////////////////////
+                list.Add(time, val);
+                ////////////////////////////////////////////
 
-            // Keep the X scale at a rolling 30 second interval, with one
-            // major step between the max X value and the end of the axis
-            Scale xScale = zedGraphControl1.GraphPane.XAxis.Scale;
-            if (time > xScale.Max - xScale.MajorStep)
-            {
-                xScale.Max = time + xScale.MajorStep;
-                xScale.Min = xScale.Max - 30.0;
+
+
+                // Keep the X scale at a rolling 30 second interval, with one
+                // major step between the max X value and the end of the axis
+                Scale xScale = zedGraphControl1.GraphPane.XAxis.Scale;
+                if (time > xScale.Max - xScale.MajorStep)
+                {
+                    xScale.Max = time + xScale.MajorStep;
+                    xScale.Min = xScale.Max - 30.0;
+                }
+
+                // Make sure the Y axis is rescaled to accommodate actual data
+                zedGraphControl1.AxisChange();
+                // Force a redraw
+                zedGraphControl1.Invalidate();
             }
-
-            // Make sure the Y axis is rescaled to accommodate actual data
-            zedGraphControl1.AxisChange();
-            // Force a redraw
-            zedGraphControl1.Invalidate();
+            while (receivemessage.Available != 0);
         }
         private void Form1_Resize(object sender, EventArgs e)
         {
@@ -160,15 +166,25 @@ namespace DynamicData
                 zedGraphControl1.Location = formRect.Location;
                 zedGraphControl1.Size = formRect.Size;
             }
+        
         }
 
         private void btnstop_Click(object sender, EventArgs e)
         {
-          //datatosend = ASCIIEncoding.ASCII.GetBytes(" ");
-         // serveur.Connect(IPAddress.Parse("169.254.245.198"), int.Parse("8888"));
+          
           datatosend = ASCIIEncoding.ASCII.GetBytes("stop");
           serveur.Send(datatosend, datatosend.Length);
-          //zedGraphControl1.HorizontalScroll = false;
+          timer1.Stop();
+        }
+
+        private void btnstart_Click(object sender, EventArgs e)
+        {
+            
+            timer1.Start();
+            datatosend = ASCIIEncoding.ASCII.GetBytes("temperature");
+            serveur.Send(datatosend, datatosend.Length);
+
+           
         }
         
         }
