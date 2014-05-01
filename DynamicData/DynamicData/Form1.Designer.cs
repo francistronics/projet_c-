@@ -56,7 +56,7 @@
             this.zedGraphControl1.ScrollMinX = 0D;
             this.zedGraphControl1.ScrollMinY = 0D;
             this.zedGraphControl1.ScrollMinY2 = 0D;
-            this.zedGraphControl1.Size = new System.Drawing.Size(722, 402);
+            this.zedGraphControl1.Size = new System.Drawing.Size(712, 402);
             this.zedGraphControl1.TabIndex = 0;
             // 
             // timer1
@@ -68,7 +68,7 @@
             this.btnstop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnstop.Font = new System.Drawing.Font("Stencil", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnstop.ForeColor = System.Drawing.Color.Red;
-            this.btnstop.Location = new System.Drawing.Point(778, 371);
+            this.btnstop.Location = new System.Drawing.Point(784, 371);
             this.btnstop.Name = "btnstop";
             this.btnstop.Size = new System.Drawing.Size(122, 43);
             this.btnstop.TabIndex = 1;
@@ -80,10 +80,11 @@
             // 
             this.labeltemp.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.labeltemp.AutoSize = true;
-            this.labeltemp.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.labeltemp.Location = new System.Drawing.Point(756, 75);
+            this.labeltemp.Font = new System.Drawing.Font("Stencil", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.labeltemp.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
+            this.labeltemp.Location = new System.Drawing.Point(745, 75);
             this.labeltemp.Name = "labeltemp";
-            this.labeltemp.Size = new System.Drawing.Size(158, 55);
+            this.labeltemp.Size = new System.Drawing.Size(201, 57);
             this.labeltemp.TabIndex = 2;
             this.labeltemp.Text = "label1";
             // 
@@ -93,7 +94,7 @@
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Stencil", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(757, 44);
+            this.label1.Location = new System.Drawing.Point(763, 44);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(162, 14);
             this.label1.TabIndex = 3;
@@ -104,7 +105,7 @@
             this.btnstart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnstart.Font = new System.Drawing.Font("Stencil", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnstart.ForeColor = System.Drawing.Color.Lime;
-            this.btnstart.Location = new System.Drawing.Point(778, 314);
+            this.btnstart.Location = new System.Drawing.Point(784, 314);
             this.btnstart.Name = "btnstart";
             this.btnstart.Size = new System.Drawing.Size(122, 44);
             this.btnstart.TabIndex = 4;
@@ -116,7 +117,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(926, 471);
+            this.ClientSize = new System.Drawing.Size(932, 471);
             this.Controls.Add(this.btnstart);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labeltemp);

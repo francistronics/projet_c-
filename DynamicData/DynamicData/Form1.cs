@@ -89,7 +89,8 @@ namespace DynamicData
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            
+                 ///ecriture sur le label////
+                labeltemp.Text = Convert.ToString(val);
                 // Make sure that the curvelist has at least one curve
                 if (zedGraphControl1.GraphPane.CurveList.Count <= 0)
                     return;
@@ -186,7 +187,7 @@ namespace DynamicData
 
                         val = double.Parse(ASCIIEncoding.ASCII.GetString(rcvbytes)); // on recupere la valeur recu pour lutiliser dans le tracer du graphe
                        // labeltemp.Text = ASCIIEncoding.ASCII.GetString(rcvbytes);
-                        labeltemp.Text = Convert.ToString(val);
+                        
                        
                     }
                     catch (Exception ex)
