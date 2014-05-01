@@ -65,13 +65,12 @@
             // 
             // btnstop
             // 
-            this.btnstop.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left)
-                        | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnstop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.btnstop.Font = new System.Drawing.Font("Stencil", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnstop.ForeColor = System.Drawing.Color.Red;
-            this.btnstop.Location = new System.Drawing.Point(205, 430);
+            this.btnstop.Location = new System.Drawing.Point(778, 371);
             this.btnstop.Name = "btnstop";
-            this.btnstop.Size = new System.Drawing.Size(564, 30);
+            this.btnstop.Size = new System.Drawing.Size(122, 43);
             this.btnstop.TabIndex = 1;
             this.btnstop.Text = "stop";
             this.btnstop.UseVisualStyleBackColor = true;
@@ -92,16 +91,20 @@
             // 
             this.label1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Stencil", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label1.Location = new System.Drawing.Point(769, 44);
+            this.label1.Location = new System.Drawing.Point(757, 44);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(121, 13);
+            this.label1.Size = new System.Drawing.Size(162, 14);
             this.label1.TabIndex = 3;
             this.label1.Text = "Temperature en Celsius:";
             // 
             // btnstart
             // 
-            this.btnstart.Location = new System.Drawing.Point(778, 241);
+            this.btnstart.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnstart.Font = new System.Drawing.Font("Stencil", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnstart.ForeColor = System.Drawing.Color.Lime;
+            this.btnstart.Location = new System.Drawing.Point(778, 314);
             this.btnstart.Name = "btnstart";
             this.btnstart.Size = new System.Drawing.Size(122, 44);
             this.btnstart.TabIndex = 4;

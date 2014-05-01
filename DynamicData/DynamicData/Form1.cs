@@ -23,6 +23,7 @@ namespace DynamicData
         byte[] datatosend = new byte[1024];
         double val;
         double time;
+        Boolean suspend = false;
         
         
         ////////////////
@@ -38,17 +39,20 @@ namespace DynamicData
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            //////////////////initialisons le thread////////////////////////////
+            Thread th1 = new Thread(asktemperature);
+            th1.Start();
 
             //////////////////////////////rajouts////////////////////////////////
             
             serveur.Connect(IPAddress.Parse("169.254.245.198"), int.Parse("8888"));
-            datatosend = ASCIIEncoding.ASCII.GetBytes("temperature");
-            serveur.Send(datatosend, datatosend.Length);
             labeltemp.Text = "0";
             
             receivemessage.Client.ReceiveTimeout = 100;
             receivemessage.Client.Blocking = false;
-            //////////////////////////////////////////////////////////////////////////////////////////
+
+            /////////////////////////gestion du graphique///////////////////////////////////////////
+
             GraphPane myPane = zedGraphControl1.GraphPane;
             myPane.Title.Text = "Test of Dynamic Data Update with ZedGraph\n" +
                   "(After 25 seconds the graph scrolls)";
@@ -85,24 +89,7 @@ namespace DynamicData
 
         private void timer1_Tick(object sender, EventArgs e)
         {
-            do
-            {
-            /////rajouts////////////////////////
-            try
-            {
-                IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 13000);
-                Byte[] rcvbytes = receivemessage.Receive(ref RemoteIpEndPoint);
-
-                val = double.Parse(ASCIIEncoding.ASCII.GetString(rcvbytes)); // on recupere la valeur recu pour lutiliser dans le tracer du graphe
-                labeltemp.Text = ASCIIEncoding.ASCII.GetString(rcvbytes);
-            }
-            catch (Exception ex)
-            {
-                string code = ex.HelpLink;
-            }
-            ////////////////////////////////////
-
-           
+            
                 // Make sure that the curvelist has at least one curve
                 if (zedGraphControl1.GraphPane.CurveList.Count <= 0)
                     return;
@@ -123,9 +110,6 @@ namespace DynamicData
                 // Time is measured in seconds
                 time = (Environment.TickCount - tickStart) / 1000.0;
 
-                // 3 seconds per cycle
-                // list.Add(time, Math.Sin(2.0 * Math.PI * time / 3.0));
-
 
                 /////////rajout/////////////////////////////
                 list.Add(time, val);
@@ -140,15 +124,16 @@ namespace DynamicData
                 {
                     xScale.Max = time + xScale.MajorStep;
                     xScale.Min = xScale.Max - 30.0;
+
                 }
 
                 // Make sure the Y axis is rescaled to accommodate actual data
                 zedGraphControl1.AxisChange();
                 // Force a redraw
                 zedGraphControl1.Invalidate();
-            }
-            while (receivemessage.Available != 0);
+           
         }
+
         private void Form1_Resize(object sender, EventArgs e)
         {
             SetSize();
@@ -170,25 +155,57 @@ namespace DynamicData
         }
 
         private void btnstop_Click(object sender, EventArgs e)
+
         {
-          
-          datatosend = ASCIIEncoding.ASCII.GetBytes("stop");
-          serveur.Send(datatosend, datatosend.Length);
           timer1.Stop();
+          suspend = true;
         }
 
         private void btnstart_Click(object sender, EventArgs e)
-        {
-            
-            timer1.Start();
-            datatosend = ASCIIEncoding.ASCII.GetBytes("temperature");
-            serveur.Send(datatosend, datatosend.Length);
 
-           
+        {           
+            timer1.Start();
+            suspend = false;         
+        }
+
+        private void asktemperature()
+        {
+            while (true)
+            {
+                while (!suspend)
+                {
+                    ////////// demande de la temperature au arduino/////
+                    datatosend = ASCIIEncoding.ASCII.GetBytes("temperature");
+                    serveur.Send(datatosend, datatosend.Length);
+                    /////////// on ecoute le reseau pour obtenir la reponse////
+
+                    try
+                    {
+                        IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 13000);
+                        Byte[] rcvbytes = receivemessage.Receive(ref RemoteIpEndPoint);
+
+                        val = double.Parse(ASCIIEncoding.ASCII.GetString(rcvbytes)); // on recupere la valeur recu pour lutiliser dans le tracer du graphe
+                       // labeltemp.Text = ASCIIEncoding.ASCII.GetString(rcvbytes);
+                        labeltemp.Text = Convert.ToString(val);
+                       
+                    }
+                    catch (Exception ex)
+                    {
+                        string code = ex.HelpLink;
+                    }
+
+                    Thread.Sleep(5000);
+                }
+                while (suspend)
+                {
+                    ;
+                }
+            }
+
         }
         
-        }
-    }
+      }
+   }
       
     
 
