@@ -21,10 +21,10 @@ namespace DynamicData
         UdpClient serveur = new UdpClient(9000);
         UdpClient receivemessage = new UdpClient(13000);
         byte[] datatosend = new byte[1024];
-        double val;
+        double val; // valeur ou est stocke la temperature recu de l'arduino
         double time;
-        Boolean suspend = false;
-        
+        Boolean suspend = false; // boolean permettant de gerer le thread
+        Thread th1;
         
         ////////////////
         // Starting time in milliseconds
@@ -40,32 +40,34 @@ namespace DynamicData
         private void Form1_Load(object sender, EventArgs e)
         {
             //////////////////initialisons le thread////////////////////////////
-            Thread th1 = new Thread(asktemperature);
+             th1 = new Thread(asktemperature);
             th1.Start();
 
             //////////////////////////////rajouts////////////////////////////////
             
             serveur.Connect(IPAddress.Parse("169.254.245.198"), int.Parse("8888"));
             labeltemp.Text = "0";
-            
+           
+
             receivemessage.Client.ReceiveTimeout = 100;
             receivemessage.Client.Blocking = false;
 
             /////////////////////////gestion du graphique///////////////////////////////////////////
 
-            GraphPane myPane = zedGraphControl1.GraphPane;
-            myPane.Title.Text = "Test of Dynamic Data Update with ZedGraph\n" +
+            GraphPane myPane = zedGraphControl1.GraphPane; // objet de type graphpane
+            myPane.Title.Text = "Arduino temperature Dynamic Data Update monitoring with ZedGraph\n" +
                   "(After 25 seconds the graph scrolls)";
             myPane.XAxis.Title.Text = "Time, Seconds";
             myPane.YAxis.Title.Text = "temperature value";
 
-            // Save 1200 points.  At 50 ms sample rate, this is one minute
-            // The RollingPointPairList is an efficient storage class that always
-            // keeps a rolling set of point data without needing to shift any data values
-            RollingPointPairList list = new RollingPointPairList(1200);
+             
+            //Enregistre 100 points. À un taux d'échantillonnage de 50ms
+            //Le RollingPointPairList est une classe de stockage efficace qui 
+            //maintient un ensemble de roulement de données de points sans avoir besoin de passer des valeurs de données
+            RollingPointPairList list = new RollingPointPairList(1000);
 
-            // Initially, a curve is added with no data points (list is empty)
-            // Color is blue, and there will be no symbols
+            // on ajoute initialement une courbe avec la liste de donnee vide
+            // Color is gold, and there will be no symbols
             LineItem curve = myPane.AddCurve("temperature", list, Color.Gold, SymbolType.None);
 
             // Sample at 50ms intervals
@@ -73,17 +75,17 @@ namespace DynamicData
             timer1.Enabled = true;
             timer1.Start();
 
-            // Just manually control the X axis range so it scrolls continuously
-            // instead of discrete step-sized jumps
+            
+            //contrôle de la plage de l'axe X de sorte qu'il défile en continu 
             myPane.XAxis.Scale.Min = 0;
             myPane.XAxis.Scale.Max = 30;
             myPane.XAxis.Scale.MinorStep = 1;
             myPane.XAxis.Scale.MajorStep = 5;
 
-            // Scale the axes
+            // graduation des axes
             zedGraphControl1.AxisChange();
 
-            // Save the beginning time for reference
+            // On enregistre l'heure de debut qu'on prend comme reference
             tickStart = Environment.TickCount;
         }
 
@@ -91,35 +93,35 @@ namespace DynamicData
         {
                  ///ecriture sur le label////
                 labeltemp.Text = Convert.ToString(val);
-                // Make sure that the curvelist has at least one curve
+                // on s'assure davoir au moins une courbe dans la curvelist
                 if (zedGraphControl1.GraphPane.CurveList.Count <= 0)
                     return;
 
-                // Get the first CurveItem in the graph
+                // on se reserve la premiere courbe dans le graphique
                 LineItem curve = zedGraphControl1.GraphPane.CurveList[0] as LineItem;
 
                 if (curve == null)
                     return;
 
-                // Get the PointPairList
+                // on recup la liste de points
                 IPointListEdit list = curve.Points as IPointListEdit;
                 // If this is null, it means the reference at curve.Points does not
                 // support IPointListEdit, so we won't be able to modify it
                 if (list == null)
                     return;
 
-                // Time is measured in seconds
+                // le temps est mesuree en seconde
                 time = (Environment.TickCount - tickStart) / 1000.0;
 
 
-                /////////rajout/////////////////////////////
+                /////////on ajoute les nouveaux points a la liste/////////////////////////////
                 list.Add(time, val);
                 ////////////////////////////////////////////
 
 
 
-                // Keep the X scale at a rolling 30 second interval, with one
-                // major step between the max X value and the end of the axis
+                // on Garde l'échelle de X à une plage de 30 secondes, avec un
+                // pas important entre la valeur de X max et l'extrémité de l'axe
                 Scale xScale = zedGraphControl1.GraphPane.XAxis.Scale;
                 if (time > xScale.Max - xScale.MajorStep)
                 {
@@ -128,9 +130,9 @@ namespace DynamicData
 
                 }
 
-                // Make sure the Y axis is rescaled to accommodate actual data
+                // on s'assure que la modification des axes est aussi effectives pour les y
                 zedGraphControl1.AxisChange();
-                // Force a redraw
+                // on force le dessin
                 zedGraphControl1.Invalidate();
            
         }
@@ -140,7 +142,7 @@ namespace DynamicData
             SetSize();
         }
 
-        // Set the size and location of the ZedGraphControl
+        // on Définis la taille et l'emplacement du ZedGraphControl
         private void SetSize()
         {
             // Control is always 100 pixels inset from the client rectangle of the form
@@ -185,17 +187,21 @@ namespace DynamicData
                         IPEndPoint RemoteIpEndPoint = new IPEndPoint(IPAddress.Any, 13000);
                         Byte[] rcvbytes = receivemessage.Receive(ref RemoteIpEndPoint);
 
-                        val = double.Parse(ASCIIEncoding.ASCII.GetString(rcvbytes)); // on recupere la valeur recu pour lutiliser dans le tracer du graphe
-                       // labeltemp.Text = ASCIIEncoding.ASCII.GetString(rcvbytes);
+        
                         
-                       
+                            val = double.Parse(ASCIIEncoding.ASCII.GetString(rcvbytes)); // on recupere la valeur recu pour lutiliser dans le tracer du graphe
+                            //labeltemp.Text = ASCIIEncoding.ASCII.GetString(rcvbytes);
+                            //MessageBox.Show(Convert.ToString(val));
+                        
+                        
+                        
                     }
                     catch (Exception ex)
                     {
                         string code = ex.HelpLink;
                     }
 
-                    Thread.Sleep(5000);
+                    Thread.Sleep(100);
                 }
                 while (suspend)
                 {
@@ -203,6 +209,11 @@ namespace DynamicData
                 }
             }
 
+        }
+
+        private void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            th1.Abort();       // on coupe le thread a la fermeture de la fenetre
         }
         
       }

@@ -45,10 +45,13 @@ char temp[UDP_TX_PACKET_MAX_SIZE];
 char  ReplyBuffer5[32];
 float vin=0.0 ;
 float tempC=0.0; // valeur de la temperature
+float T=0.0,b=2196200,a=-1481.96,c=1.8639;
+float d= 0.00000388;
 
 void setup() {
   // start the Ethernet and UDP:
   pinMode(9,OUTPUT);
+  pinMode(7,OUTPUT);
   Ethernet.begin(mac,ip);
   Udp.begin(localPort);
 
@@ -85,15 +88,30 @@ void loop() {
 
     if( strcmp(temp,test4)==0)
     {
-      vin = 5.0 * analogRead(0) / 1023.0;
+      Serial.println("<......a......b......c.....d.....>");
+      Serial.print(a);Serial.print(".....");Serial.print(b);Serial.print(".....");Serial.print(c);Serial.print(".....");Serial.println(d,8);
+      
+      
+      vin = 5.0 * analogRead(0) / 1024.0;
+      float e = (c-vin)/d;
+      float f = sqrt(b+e);
+      T = a + f;
+      Serial.print(vin);
+      Serial.print("<......An et T.......>");
+      Serial.println(T,8); 
       tempC = (1.8663 - vin) / 0.01169;// temp in celcius
       int temp1 = (tempC - (int)tempC) * 100;
-      sprintf(ReplyBuffer5,"%d,%d", (int)tempC, temp1);
+      sprintf(ReplyBuffer5,"%d,%d", (int)tempC, abs(temp1));
       Udp.sendPacket(ReplyBuffer5, remoteIp, Port);
+      
       Serial.print(ReplyBuffer5);
       Serial.print("    <.....R.....et tempc.>.....");
       Serial.println(tempC);
+      digitalWrite(7,HIGH);
+      delay(2000);
+      digitalWrite(7,LOW);
     }
+    
 
 
 

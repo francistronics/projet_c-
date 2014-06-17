@@ -31,7 +31,7 @@
             this.components = new System.ComponentModel.Container();
             this.zedGraphControl1 = new ZedGraph.ZedGraphControl();
             this.timer1 = new System.Windows.Forms.Timer(this.components);
-            this.btnstop = new System.Windows.Forms.Button();
+            this.btnpause = new System.Windows.Forms.Button();
             this.labeltemp = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnstart = new System.Windows.Forms.Button();
@@ -63,18 +63,18 @@
             // 
             this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // btnstop
+            // btnpause
             // 
-            this.btnstop.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnstop.Font = new System.Drawing.Font("Stencil", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnstop.ForeColor = System.Drawing.Color.Red;
-            this.btnstop.Location = new System.Drawing.Point(784, 371);
-            this.btnstop.Name = "btnstop";
-            this.btnstop.Size = new System.Drawing.Size(122, 43);
-            this.btnstop.TabIndex = 1;
-            this.btnstop.Text = "stop";
-            this.btnstop.UseVisualStyleBackColor = true;
-            this.btnstop.Click += new System.EventHandler(this.btnstop_Click);
+            this.btnpause.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnpause.Font = new System.Drawing.Font("Stencil", 14.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnpause.ForeColor = System.Drawing.Color.Red;
+            this.btnpause.Location = new System.Drawing.Point(784, 371);
+            this.btnpause.Name = "btnpause";
+            this.btnpause.Size = new System.Drawing.Size(122, 43);
+            this.btnpause.TabIndex = 1;
+            this.btnpause.Text = "Pause";
+            this.btnpause.UseVisualStyleBackColor = true;
+            this.btnpause.Click += new System.EventHandler(this.btnstop_Click);
             // 
             // labeltemp
             // 
@@ -121,11 +121,12 @@
             this.Controls.Add(this.btnstart);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.labeltemp);
-            this.Controls.Add(this.btnstop);
+            this.Controls.Add(this.btnpause);
             this.Controls.Add(this.zedGraphControl1);
             this.ForeColor = System.Drawing.SystemColors.HotTrack;
             this.Name = "Form1";
             this.Text = "Form1";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Form1_FormClosing);
             this.Load += new System.EventHandler(this.Form1_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -136,7 +137,7 @@
 
         private ZedGraph.ZedGraphControl zedGraphControl1;
         private System.Windows.Forms.Timer timer1;
-        private System.Windows.Forms.Button btnstop;
+        private System.Windows.Forms.Button btnpause;
         private System.Windows.Forms.Label labeltemp;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnstart;

@@ -123,6 +123,8 @@ void control(char temp[])
 
       //ReplyBuffer5[0]= 40;
       Udp.sendPacket(ReplyBuffer5, remoteIp, Port);
+      Serial.print(ReplyBuffer5);
+      Serial.print("    <.....R.....et tempc.>.....");
       Serial.println(tempC);
 
 
